@@ -21,7 +21,8 @@ function MyApp() {
 
     return (
         <div className="container">
-            <Table characterData={characters} />
+            <Table characterData={characters}
+                removeCharacter={removeOneCharacter} />
         </div>
     );
 }
