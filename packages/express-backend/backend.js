@@ -50,6 +50,11 @@ const addUser = (user) => {
     return user;
 }
 
+const removeUser = (id) => {
+    let index = users['users_list'].findIndex((user) => user['id'] === id);
+    users['users_list'].splice(index, 1);
+}
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
@@ -79,6 +84,12 @@ app.get('/users/:id', (req, res) => {
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
     addUser(userToAdd);
+    res.send();
+});
+
+app.delete('/users/:id', (req, res) => {
+    const id = req.params['id'];
+    removeUser(id);
     res.send();
 });
 
