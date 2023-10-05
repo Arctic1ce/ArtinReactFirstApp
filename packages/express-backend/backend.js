@@ -58,8 +58,13 @@ const addUser = (user) => {
 }
 
 const removeUser = (id) => {
-    let index = users['users_list'].findIndex((user) => user['id'] === id);
-    users['users_list'].splice(index, 1);
+    users['users_list'] = users['users_list'].filter((user) => user['id'] != id);
+}
+
+const generateId = (user) => {
+    let id = Math.floor(Math.random() * 10000);
+    user['id'] = id;
+    return user;
 }
 
 app.get('/', (req, res) => {
@@ -96,14 +101,15 @@ app.get('/users/:id', (req, res) => {
 
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
+    generateId(userToAdd);
     addUser(userToAdd);
-    res.send();
+    res.status(201).send(userToAdd);
 });
 
 app.delete('/users/:id', (req, res) => {
     const id = req.params['id'];
     removeUser(id);
-    res.send();
+    res.status(204).send();
 });
 
 app.listen(port, () => {
