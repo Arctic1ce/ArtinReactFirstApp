@@ -60,8 +60,8 @@ app.get('/users', (req, res) => {
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
     const result = Users.addUser(userToAdd);
-    result.then(() => {
-        res.status(201).send(userToAdd);
+    result.then((json) => {
+        res.status(201).send(json);
     });
 });
 
