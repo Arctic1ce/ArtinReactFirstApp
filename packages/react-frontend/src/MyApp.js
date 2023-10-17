@@ -18,7 +18,7 @@ function MyApp() {
     }
 
     function removeOneCharacter(index) {
-        const id = characters[index]["id"];
+        const id = characters[index]["_id"];
         deleteUser(id)
             .then((res) => {
                 if (res.status !== 204) {
@@ -69,7 +69,7 @@ function MyApp() {
     useEffect(() => {
         fetchUsers()
             .then((res) => res.json())
-            .then((json) => setCharacters(json["users_list"]))
+            .then((json) => setCharacters(json))
             .catch((error) => { console.log(error); });
     }, []);
 
