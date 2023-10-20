@@ -62,6 +62,8 @@ app.post('/users', (req, res) => {
     const result = Users.addUser(userToAdd);
     result.then((json) => {
         res.status(201).send(json);
+    }).catch((error) => {
+        res.status(404).send('Failed to insert');
     });
 });
 
@@ -70,6 +72,8 @@ app.delete('/users/:id', (req, res) => {
     const result = Users.removeUser(id);
     result.then(() => {
         res.status(204).send();
+    }).catch((error) => {
+        res.status(404).send('Failed to delete entry')
     });
 });
 
